@@ -9,9 +9,9 @@ for (var i = 1; i <= 100; i++) {
 		image: faker.image.files,
 		date: faker.date,
 		desc: faker.lorem.desc,
-		tag: faker.tag.findName(),
+		tag: faker.tag,
         id: faker.random.number(),
-		activities: faker.activities.split(","),
+		activities: faker.activities,
 		complete: faker.complete
 	});
 }

@@ -18,7 +18,7 @@ export class AddTaskComponent implements OnInit {
 	allTags: string[] = ['task 1', 'task 2', 'task 3', 'task 4', 'task 5'];
 	TaskForm!: FormGroup;
 	fileToUpload!: File;
-	tag: string[] = [];
+	tag: string[] = ["task"];
 	@ViewChild('tags') tags: ElementRef<HTMLInputElement>;
 	date: string = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay();
 	filteredTags: Observable<string[]>;
@@ -93,7 +93,7 @@ export class AddTaskComponent implements OnInit {
 
 
 	submit(): void {
-		this.TaskForm.controls.tag.patchValue(this.tag)
+		if(this.tag.length > 0) this.TaskForm.controls.tag.patchValue(this.tag);
 		const formData: FormData = new FormData();
 		formData.append("title", this.TaskForm.controls.title.value)
 		formData.append("image", this.TaskForm.controls.image.value)

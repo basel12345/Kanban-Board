@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TasksService } from 'src/app/service/tasks.service';
 import { ActivatedRoute } from '@angular/router';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
 	selector: 'app-tasks',
@@ -12,10 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TasksComponent implements OnInit {
 	image = "https://thumbs.dreamstime.com/z/task-concept-people-letters-icons-flat-vector-illustration-isolated-white-background-task-concept-people-letters-139612201.jpg";
-	items: any = [];
-	todo: any = [];
-	done: any = [];
-	task: any;
+	items: any;
+	todo: Task[]= [];
+	done: Task[]= [];
+	taskUpdate: any;
+	task: Task;
 
 	constructor(
 		public dialog: MatDialog,
@@ -26,7 +28,7 @@ export class TasksComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.data.subscribe(res => {
 			this.items = res.Task;
-			console.log(this.items);
+			console.log(res.Task);
 			
 		});
 	}
@@ -39,16 +41,17 @@ export class TasksComponent implements OnInit {
 
 	compelete(id: number) {
 		this.tasksService.getByIdTask(id).subscribe(res => {
-			this.task = res;
+			this.taskUpdate = res;
 			if (res) {
 				this.task = {
-					complete: "true",
-					activities: this.task.activities,
-					createdAt: this.task.createdAt,
-					desc: this.task.desc,
-					image: this.task.image,
-					tag: this.task.tag,
-					title: this.task.title
+					complete: true,
+					activities: this.taskUpdate.activities,
+					createdAt: this.taskUpdate.createdAt,
+					desc: this.taskUpdate.desc,
+					image: this.taskUpdate.image,
+					tag: this.taskUpdate.tag,
+					title: this.taskUpdate.title,
+					id: id
 				};
 			}
 

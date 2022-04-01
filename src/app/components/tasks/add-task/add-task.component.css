@@ -12,6 +12,7 @@ button {
 
 .remove {
 	position: relative;
+	border: none;
 }
 
 mat-icon {
