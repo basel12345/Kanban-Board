@@ -1,0 +1,21 @@
+button {
+	margin-top: 10px;
+}
+
+.p-success {
+	color: green;
+}
+
+.example-chip-list {
+	width: 100%;
+}
+
+.remove {
+	position: relative;
+}
+
+mat-icon {
+	position: absolute;
+	top: -5px;
+    left: -4px;
+}

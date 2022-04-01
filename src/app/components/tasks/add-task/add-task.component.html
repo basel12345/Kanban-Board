@@ -1,0 +1,76 @@
+<form action="" [formGroup]="TaskForm" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Task Name</mat-label>
+                <input formControlName="title" matInput>
+                <div *ngIf="TaskForm.controls.title.touched && TaskForm.controls.title.invalid"
+                    class="alert alert-danger">
+                    <div *ngIf="TaskForm.controls.title.errors.required">Task Name is required.</div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="col-12">
+            <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-label>Favorite Fruits</mat-label>
+                <mat-chip-list #chipList aria-label="Tags">
+                    <mat-chip *ngFor="let tag of tag" (removed)="remove(tag)">
+                        {{tag}}
+                        <button matChipRemove class="remove">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                    <input placeholder="tags....." #tags [matAutocomplete]="auto" formControlName="tag"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let tag of filteredTags | async" [value]="fruit">
+                        {{tag}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+        </div>
+        <div class="col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Descarption</mat-label>
+                <textarea formControlName="desc" matInput></textarea>
+                <div *ngIf="TaskForm.controls.desc.touched && TaskForm.controls.desc.invalid"
+                    class="alert alert-danger">
+                    <div *ngIf="TaskForm.controls.desc.errors.required">description is required.</div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="col-12" style="margin-bottom: 10px">
+            <input type="file" #fileInput id="uploadFile" formControlName="image"
+                (change)="uploadFile($event.target.files)" name="uploadFile" multiple="multiple" accept="image/*" />
+            <div *ngIf="TaskForm.controls.image.touched && TaskForm.controls.image.invalid" class="alert alert-danger">
+                <div *ngIf="TaskForm.controls.image.errors.required">Image is required.</div>
+            </div>
+        </div>
+        <div class="col-12">
+            <section class="example-section">
+                <label class="example-margin">Activities:</label>
+                <mat-radio-group formControlName="activities">
+                    <mat-radio-button class="example-margin" [value]="'Activit 1'">Activit 1</mat-radio-button>
+                    <mat-radio-button class="example-margin" [value]="'Activit 2'">Activit 2</mat-radio-button>
+                    <mat-radio-button class="example-margin" [value]="'Activit 3'">Activit 3</mat-radio-button>
+                </mat-radio-group>
+            </section>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <span>{{this.TaskForm.controls.createdAt.value}}</span>
+                </div>
+                <div class="col-6" style="text-align: right;">
+                    <span class="p-success">complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <button class="btn btn-primary" type="submit" [disabled]="TaskForm.invalid">Add</button>
+    </div>
+</form>

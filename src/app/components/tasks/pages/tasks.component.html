@@ -1,0 +1,109 @@
+<div class="container">
+    <div cdkDropListGroup>
+        <div class="example-container">
+            <h2 class="text-center">Backlog</h2>
+
+            <mat-card class="example-card">
+                <div cdkDropList [cdkDropListData]="items" class="example-list" cdkDropListSortingDisabled
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of items" cdkDrag>
+                        <mat-card class="example-card">
+
+                            <mat-card-header>
+                                <mat-card-title>{{item.title}}</mat-card-title>
+                                <mat-card-subtitle>{{item.activities}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image [src]="image" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    {{item.desc}}
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <div class="row">
+                                    <div class="col-6">
+                                        {{item.createdAt}}
+                                    </div>
+                                    <div class="col-6" style="text-align: right;">
+                                        <span class="p-success">complete</span>
+                                    </div>
+                                </div>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div class="text-center">
+                        <button (click)="addTask()">
+                            Add New Task
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="example-container">
+            <h2 class="text-center">To Do</h2>
+            <mat-card class="example-card">
+                <div cdkDropList [cdkDropListData]="basket" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of basket" cdkDrag>
+                        <mat-card class="example-card">
+
+                            <mat-card-header>
+                                <mat-card-title>{{item.title}}</mat-card-title>
+                                <mat-card-subtitle>{{item.activities}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image [src]="image" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    {{item.desc}}
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <div class="row">
+                                    <div class="col-6">
+                                        {{item.createdAt}}
+                                    </div>
+                                    <div class="col-6" style="text-align: right;">
+                                        <span class="p-success">complete</span>
+                                    </div>
+                                </div>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="example-container">
+            <h2 class="text-center">Done</h2>
+            <mat-card class="example-card">
+                <div cdkDropList [cdkDropListData]="compelete" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of compelete" cdkDrag>
+                        <mat-card class="example-card">
+
+                            <mat-card-header>
+                                <mat-card-title>{{item.title}}</mat-card-title>
+                                <mat-card-subtitle>{{item.activities}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image [src]="image" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    {{item.desc}}
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <div class="row">
+                                    <div class="col-6">
+                                        {{item.createdAt}}
+                                    </div>
+                                    <div class="col-6" style="text-align: right;">
+                                        <span class="p-success">complete</span>
+                                    </div>
+                                </div>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

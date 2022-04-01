@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "title": "Lucy Pitts",
+      "image": "C:\\fakepath\\221394302_3789830491116535_8577745342008646248_n.jpg",
+      "desc": "Laboriosam exceptur",
+      "tag": "Officia mollit enim ",
+      "index": "",
+      "createdAt": "2022-3-5",
+      "activities": "Activit 1",
+      "id": 1
+    },
+    {
+      "title": "Phillip Hughes",
+      "image": "C:\\fakepath\\221394302_3789830491116535_8577745342008646248_n.jpg",
+      "desc": "Officiis animi irur",
+      "tag": "Cillum alias consequ",
+      "index": "",
+      "createdAt": "2022-3-5",
+      "activities": "Activit 3",
+      "id": 2
+    },
+    {
+      "title": "Oscar West",
+      "image": "C:\\fakepath\\6863.jpg",
+      "desc": "Dolores explicabo A",
+      "tag": "Tenetur voluptate ip",
+      "index": 3,
+      "createdAt": "2022-3-5",
+      "activities": "Activit 2",
+      "id": 3
+    }
+  ]
+}
