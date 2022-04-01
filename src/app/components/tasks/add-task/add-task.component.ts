@@ -15,10 +15,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddTaskComponent implements OnInit {
 	separatorKeysCodes: number[] = [ENTER, COMMA];
-	allTags: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+	allTags: string[] = ['task 1', 'task 2', 'task 3', 'task 4', 'task 5'];
 	TaskForm!: FormGroup;
 	fileToUpload!: File;
-	tag: string[] = ['task'];
+	tag: string[] = [];
 	@ViewChild('tags') tags: ElementRef<HTMLInputElement>;
 	date: string = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay();
 	filteredTags: Observable<string[]>;
@@ -44,16 +44,16 @@ export class AddTaskComponent implements OnInit {
 			title: ["", Validators.required],
 			image: [this.fileToUpload, Validators.required],
 			desc: ["", Validators.required],
-			tag: [],
-			index: this.data.length + 1,
+			tag: "",
 			createdAt: this.date,
-			activities: ""
+			activities: "",
+			complete: false
 		})
 	}
 
 	add(event: MatChipInputEvent): void {
 		const value = (event.value || '').trim();
-
+		
 		// Add our fruit
 		if (value) {
 			this.tag.push(value);
@@ -86,27 +86,23 @@ export class AddTaskComponent implements OnInit {
 
 
 	private _filter(value: string): string[] {
-		const filterValue = value.toLowerCase();
+		const filterValue = value;
 
 		return this.allTags.filter(fruit => fruit.toLowerCase().includes(filterValue));
 	}
 
 
 	submit(): void {
-		console.log(this.TaskForm.controls);
-
+		this.TaskForm.controls.tag.patchValue(this.tag)
 		const formData: FormData = new FormData();
 		formData.append("title", this.TaskForm.controls.title.value)
 		formData.append("image", this.TaskForm.controls.image.value)
 		formData.append("desc", this.TaskForm.controls.desc.value)
 		formData.append("tag", this.TaskForm.controls.tag.value)
-		formData.append("index", this.TaskForm.controls.index.value)
 		formData.append("createdAt", this.TaskForm.controls.createdAt.value)
 		formData.append("activities", this.TaskForm.controls.activities.value)
 		this.tasksService.addTask(this.TaskForm.getRawValue()).subscribe(res => {
 			if (res) this.dialogRef.close();
-			console.log(res);
-			
 		});
 	};
 

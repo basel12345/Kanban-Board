@@ -1,18 +1,18 @@
 var faker = require('faker');
 var fs = require('fs');
 
-var database = { products: [] };
+var database = { backlog: [] };
 
 for (var i = 1; i <= 100; i++) {
-	database.products.push({
+	database.backlog.push({
 		title: faker.title,
 		image: faker.image.files,
 		date: faker.date,
 		desc: faker.lorem.desc,
 		tag: faker.tag.findName(),
-		index: faker.number(),
         id: faker.random.number(),
-		activities: faker.activities
+		activities: faker.activities.split(","),
+		complete: faker.complete
 	});
 }
 

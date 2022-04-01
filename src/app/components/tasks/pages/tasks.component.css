@@ -57,7 +57,12 @@
 }
 
 .p-success {
-	color: green;
+	color: #008000;
+}
+
+.p-default {
+	color: black;	
+	cursor: pointer;
 }
 
 button {
@@ -67,4 +72,17 @@ button {
 	padding: 3px;
 	border-radius: 17px;
 	width: 152px;
+}
+
+.example-list {
+	min-height: 100vh;
+}
+
+.tag {
+	display: inline-block;
+    border: 1px solid green;
+    color: white;
+    background: green;
+    border-radius: 150px;
+    padding: 3px 6px;
 }

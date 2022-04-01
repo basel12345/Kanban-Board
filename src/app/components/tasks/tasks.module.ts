@@ -51,11 +51,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
+import { TaskResolver } from 'src/app/resolver/task.resolver';
 
 @NgModule({
     declarations: [
         TasksComponent,
-        AddTaskComponent
+        AddTaskComponent,
     ],
     imports: [
         CommonModule,
@@ -116,6 +117,8 @@ import { A11yModule } from '@angular/cdk/a11y';
         PortalModule,
         ScrollingModule, 
     ],
-    providers: [],
+    providers: [
+        TaskResolver
+    ],
 })
 export class TaskModule { }

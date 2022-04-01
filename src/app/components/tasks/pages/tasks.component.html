@@ -11,7 +11,9 @@
 
                             <mat-card-header>
                                 <mat-card-title>{{item.title}}</mat-card-title>
-                                <mat-card-subtitle>{{item.activities}}</mat-card-subtitle>
+                                <mat-card-subtitle>Activities: {{item.activities}}</mat-card-subtitle>
+                                <mat-card-subtitle>Index: {{item.id}}</mat-card-subtitle>
+                                <mat-card-subtitle *ngIf="item.tag.length > 0">Tags: <div class="tag" *ngFor="let res of item.tag">{{res}}</div></mat-card-subtitle>
                             </mat-card-header>
                             <img mat-card-image [src]="image" alt="Photo of a Shiba Inu">
                             <mat-card-content>
@@ -25,7 +27,7 @@
                                         {{item.createdAt}}
                                     </div>
                                     <div class="col-6" style="text-align: right;">
-                                        <span class="p-success">complete</span>
+                                        <a [ngClass]="item.complete ? 'p-success' : 'p-default'" class="p-success" (click)="compelete(item.id)">{{item.complete ? 'complete' : 'non complete'}}</a>
                                     </div>
                                 </div>
                             </mat-card-actions>
@@ -43,13 +45,15 @@
         <div class="example-container">
             <h2 class="text-center">To Do</h2>
             <mat-card class="example-card">
-                <div cdkDropList [cdkDropListData]="basket" class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let item of basket" cdkDrag>
+                <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of todo" cdkDrag>
                         <mat-card class="example-card">
 
                             <mat-card-header>
                                 <mat-card-title>{{item.title}}</mat-card-title>
-                                <mat-card-subtitle>{{item.activities}}</mat-card-subtitle>
+                                <mat-card-subtitle>Activities: {{item.activities}}</mat-card-subtitle>
+                                <mat-card-subtitle>Index: {{item.id}}</mat-card-subtitle>
+                                <mat-card-subtitle *ngIf="item.tag">Tags: <div class="tag">{{item.tag}}</div></mat-card-subtitle>
                             </mat-card-header>
                             <img mat-card-image [src]="image" alt="Photo of a Shiba Inu">
                             <mat-card-content>
@@ -63,7 +67,7 @@
                                         {{item.createdAt}}
                                     </div>
                                     <div class="col-6" style="text-align: right;">
-                                        <span class="p-success">complete</span>
+                                        <a class="p-success" (click)="compelete(item.id)">{{item.complete ? 'complete' : 'non complete'}}</a>
                                     </div>
                                 </div>
                             </mat-card-actions>
@@ -76,13 +80,15 @@
         <div class="example-container">
             <h2 class="text-center">Done</h2>
             <mat-card class="example-card">
-                <div cdkDropList [cdkDropListData]="compelete" class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let item of compelete" cdkDrag>
+                <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of done" cdkDrag>
                         <mat-card class="example-card">
 
                             <mat-card-header>
                                 <mat-card-title>{{item.title}}</mat-card-title>
-                                <mat-card-subtitle>{{item.activities}}</mat-card-subtitle>
+                                <mat-card-subtitle>Activities: {{item.activities}}</mat-card-subtitle>
+                                <mat-card-subtitle>Index: {{item.id}}</mat-card-subtitle>
+                                <mat-card-subtitle *ngIf="item.tag">Tags: <div class="tag">{{item.tag}}</div></mat-card-subtitle>
                             </mat-card-header>
                             <img mat-card-image [src]="image" alt="Photo of a Shiba Inu">
                             <mat-card-content>
@@ -96,7 +102,7 @@
                                         {{item.createdAt}}
                                     </div>
                                     <div class="col-6" style="text-align: right;">
-                                        <span class="p-success">complete</span>
+                                        <a class="p-success" (click)="compelete(item.id)">{{item.complete ? 'complete' : 'non complete'}}</a>
                                     </div>
                                 </div>
                             </mat-card-actions>
