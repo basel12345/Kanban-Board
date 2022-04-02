@@ -10,11 +10,11 @@ const routes: Routes = [
 		path: '',
 		redirectTo: 'tasks',
 		pathMatch: 'full'
-	  },
-	  {
+	},
+	{
 		path: '**',
 		redirectTo: 'tasks',
-	  }
+	}
 ];
 
 @NgModule({
